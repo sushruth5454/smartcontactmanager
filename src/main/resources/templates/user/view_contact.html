@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/bas::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>DashBoard</title>
+</head>
+<body>
+<section>
+    <div class="card mr-3 ml-3">
+        <div th:if="${contact}">
+        <div class="container text-center mt-3">
+        <img class="card-img-top mr-5 ml-5" style="height: 200px; width:200px;border-radius: 50%;" src="..." alt="Card image cap" th:src="@{'/images/'+${contact.imageUrl}}">
+            <h3 class="card-title mt-3"><span th:text="${contact.name}"></span>(<span th:text="${contact.secondName}"></span>)</h3>
+        </div>
+            <div class="card-body">
+                <table class="table table-striped mr-3 ml-3 text-center">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col" th:text="'SCMUSER'+${contact.cId}"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="col">Phone</th>
+                        <th scope="col" th:text="${contact.phone}"></th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Email</th>
+                        <th scope="col" th:text="${contact.email}"></th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Work</th>
+                        <th scope="col" th:text="${contact.work}"></th>
+                    </tr>
+                    <tr>
+                        <th scope="col">About</th>
+                        <th scope="col" th:text="${contact.description}"></th>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="container text-center mt-3">
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                <button type="submit" class="btn bg-primary btn-sm text-white">Update</button>
+                </div>
+
+        </div>
+    </div>
+        <div th:if="${notify}">
+            <h1 th:text="${notify}"></h1>
+        </div>
+    </div>
+</section>
+</body>
+</html>

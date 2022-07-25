@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/bas::layout(~{::section})"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>DashBoard</title>
+</head>
+<body>
+<section>
+    <div class="card mr-3">
+        <div th:if="${session.message}" class="container">
+        <div class="alert" role="alert"
+             th:text="${session.message.getContent()}"
+             th:classappend="${session.message.getType()}"
+        >
+        </div>
+            <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+        </div>
+        <div class="card-body">
+            <h1 class="text-center mt-2">Add Contact</h1>
+            <div class="container-fluid mt-1">
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <form action="#"
+                              th:object="${contact}"
+                              enctype="multipart/form-data"
+                              method="post"
+                              th:action="@{/user/process-contact}"
+                              class="mt-2"
+                        >
+                            <!--first name-->
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-plus"></i>
+                                    </div>
+                                </div>
+                                <input type="text" id="firstName" name="name" placeholder="Enter Your Name" class="form-control">
+                            </div>
+
+                            <!--second name-->
+                            <div class="input-group mt-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa-thin fa-plus"></i>
+                                    </div>
+                                </div>
+                                <input type="text" id="secondName" name="secondName" placeholder="Enter Your Second Name" class="form-control">
+                            </div>
+
+                            <!--phone-->
+
+                            <div class="input-group mt-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-phone"></i>
+                                    </div>
+                                </div>
+                                <input type="number" id="phone" name="phone" placeholder="Enter Mobile Number" class="form-control">
+                            </div>
+
+                            <!--email-->
+                            <div class="input-group mt-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa-solid fa-at"></i>
+                                    </div>
+                                </div>
+                                <input required type="email" id="email" name="email" placeholder="Enter Email" class="form-control">
+                            </div>
+
+
+                            <!--work-->
+                            <div class="input-group mt-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa-solid fa-briefcase"></i>
+                                    </div>
+                                </div>
+                                <input required type="text" id="work" name="work" placeholder="Enter Work" class="form-control">
+                            </div>
+
+                            <!--decsription-->
+                            <div class="input-group mt-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa-solid fa-comment"></i>
+                                    </div>
+                                </div>
+                                <textarea rows="10" cols="30" name="description" id="mytextarea" placeholder="Enter Something about the contact" class="form-control"></textarea>
+                            </div>
+
+                            <!--profile picture-->
+                            <div class="input-group mt-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa-solid fa-user"></i>
+                                    </div>
+                                </div>
+                                <input type="file" name="profileImage">Upload Profile picture</input>
+                            </div>
+
+                            <div class="container text-center mt-5">
+                                <button type="submit" class="btn btn-lg bg-primary text-white">ADD</button>
+                            </div>
+
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

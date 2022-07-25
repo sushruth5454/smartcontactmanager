@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/bas::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>DashBoard</title>
+</head>
+<body>
+<section>
+    <h1>welcome <span th:text="${user.name}"></span> are a normal user</h1>
+    <h2 th:text="${user.password}"></h2>
+    <h3>Email is <span th:text="${user.email}"></span> </h3>
+</section>
+</body>
+</html>
