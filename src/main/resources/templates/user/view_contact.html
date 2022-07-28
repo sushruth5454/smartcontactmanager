@@ -40,8 +40,8 @@
                     </tbody>
                 </table>
                 <div class="container text-center mt-3">
-                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                <button type="submit" class="btn bg-primary btn-sm text-white">Update</button>
+                <a th:onclick="|deleteContact(${contact.cId},${currentPage})|" type="submit" class="btn btn-danger btn-sm">Delete</a>
+                <a th:href="@{'/user/update/'+${contact.cId}}"type="submit" class="btn bg-primary btn-sm text-white">Update</a>
                 </div>
 
         </div>

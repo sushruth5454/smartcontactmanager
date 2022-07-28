@@ -6,9 +6,19 @@
 </head>
 <body>
 <section>
-    <h1>welcome <span th:text="${user.name}"></span> are a normal user</h1>
-    <h2 th:text="${user.password}"></h2>
-    <h3>Email is <span th:text="${user.email}"></span> </h3>
+    <div class="container text-center">
+            <div class="container text-center mt-3">
+                <img class="card-img-top mr-5 ml-5" style="height: 200px; width:200px;border-radius: 50%;" src="..." alt="Card image cap" th:src="@{'/images/'+${user.imageUrl}}">
+                <h3 class="card-title mt-3"><span th:text="'Welcome '+${user.name}"></span></h3>
+            </div>
+            <div class="card-body">
+                <h1>Save The Contacts and Access it from Anywhere...</h1>
+                <div class="container text-center mt-3">
+                    <a th:href="@{/user/add-contact}" class="btn btn-lg bg-primary text-white">Click To Add Contacts</a>
+                </div>
+
+            </div>
+    </div>
 </section>
 </body>
 </html>

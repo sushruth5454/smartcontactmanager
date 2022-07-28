@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="my-card mt-2">
+                    <!--alert-->
+                    <div th:if="${session.message}" class="alert" role="alert"
+                         th:text="${session.message.getContent()}"
+                         th:classappend="${session.message.getType()}"
+                    >
+                    </div>
+                    <div>
+                        <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                    </div>
+
+                    <h1 class="text-center">
+                        <img src="" style="width : 50px;" th:src="@{/images/reg.png}"> <span>Update profile</span>
+                    </h1>
+
+                    <form id="register-form"novalidate th:action="@{/user/profile-update}"
+                          enctype="multipart/form-data"
+                          method="post" th:object="${user}">
+                        <div class="form-group">
+                            <input hidden type="text" class="form-control"
+                                   name="id" id="id"
+                                   th:value="${user.id}"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputName">Name</label>
+                            <input type="text" class="form-control"
+                                   name="name" id="exampleInputName" placeholder="Enter Your Name"
+                                   th:value="${user.name}"
+                                   th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : ''"
+                            >
+                            <div class="invalid-feedback">
+                                <p th:each="e : ${#fields.errors('name')}" th:text="${e}"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control"
+                                   name="email" id="exampleInputEmail1"
+                                   placeholder="Enter email"
+                                   th:value="${user.email}"
+                                   th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : ''"
+                            >
+                            <div class="invalid-feedback">
+                                <p th:each="e : ${#fields.errors('email')}" th:text="${e}"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="text" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password" th:value="${user.password}">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="about" id="about" rows="10" class="form-control" placeholder="Enter About YourSelf" th:text="${user.about}"></textarea>
+                        </div>
+                        <div>
+                            <div class="container text-center">
+                                <img src="" th:style="'height:100px; width:100px; border-radius:50%;'" th:src="@{'/images/'+${user.imageUrl}}">
+                            </div>
+                            <input name="image"th:text="${'Upload Your Profile Picture  '}" type="file"/>
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <button type="submit" class="bg-primary btn text-white">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
+

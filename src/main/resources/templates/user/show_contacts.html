@@ -7,6 +7,10 @@
 </head>
 <body>
 <section>
+        <div class="container" th:if="${session.message}">
+            <div class="alert" role="alert" th:text="${session.message.content}" th:classappend="${session.message.type}"></div>
+        </div>
+    <th:block th:text="${#session.removeAttribute('message')}"></th:block>
     <div class="card mr-3 ml-2">
         <div class="card-body">
             <h1 class="text-center">Your Contacts</h1>
@@ -25,15 +29,15 @@
             <th scope="row" th:text="'SCMUSR'+${contact.cId}"></th>
             <td>
                 <img class="image" src="" th:src="@{'/images/'+${contact.imageUrl}}"/>
-                <a th:href="@{'/user/contact/'+${contact.cId}}" th:style="'color:black;'">
+                <a th:href="@{'/user/contact/'+${currentPage}+'/'+${contact.cId}}" th:style="'color:black;'">
                 <span th:text="${contact.name}" />
                 </a>
             </td>
             <td th:text="${contact.email}"></td>
             <td th:text="${contact.phone}"></td>
             <td>
-                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                <button type="submit" class="btn bg-primary btn-sm text-white">Update</button>
+                <a href="#"  th:onclick="|deleteContact(${contact.cId},${currentPage})|" type="submit" class="btn btn-danger btn-sm">Delete</a>
+                <a th:href="@{'/user/update/'+${contact.cId}}" type="submit" class="btn bg-primary btn-sm text-white">Update</a>
             </td>
         </tr>
         </tbody>

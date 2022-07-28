@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/bas::layout(~{::section})">
+<head>
+  <meta charset="UTF-8">
+  <title>DashBoard</title>
+</head>
+<body>
+<section>
+  <div class="card mr-3 ml-3">
+    <div th:if="${session.message}" class="alert" role="alert"
+    th:text="${session.message.getContent()}" th:classappend="${session.message.getType()}"
+    >
+    </div>
+    <div
+      <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+
+    </div>
+    <div th:if="${user}">
+      <div class="container text-center mt-3">
+        <img class="card-img-top mr-5 ml-5" style="height: 200px; width:200px;border-radius: 50%;" src="..." alt="Card image cap" th:src="@{'/images/'+${user.imageUrl}}">
+        <h3 class="card-title mt-3"><span th:text="${user.name}"></span></h3>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped mr-3 ml-3 text-center">
+          <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col" th:text="'SCMUSER'+${user.id}"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="col">Email</th>
+            <th scope="col" th:text="${user.email}"></th>
+          </tr>
+          <tr>
+            <th scope="col">Work</th>
+            <th scope="col" th:text="${user.role}"></th>
+          </tr>
+          <tr>
+            <th scope="col">About</th>
+            <th scope="col" th:text="${user.about}"></th>
+          </tr>
+          </tbody>
+        </table>
+        <div class="container text-center mt-3">
+          <a th:href="@{/user/updateProfile}"type="submit" class="btn bg-primary btn-sm text-white">Update</a>
+        </div>
+
+      </div>
+    </div>
+    <div th:if="${notify}">
+      <h1 th:text="${notify}"></h1>
+    </div>
+  </div>
+</section>
+</body>
+</html>

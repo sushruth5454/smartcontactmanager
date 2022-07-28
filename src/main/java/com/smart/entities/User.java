@@ -25,7 +25,7 @@ public class User {
     private int id;
 
     @NotBlank(message = "Name field is Required")
-    @Size(min = 3, max = 10, message = "User Name Should be of lenght 3 to 10")
+    @Size(min = 3, message = "User Name Should be of lenght greater than 2")
     private String name;
 
     @Column(unique = true)
